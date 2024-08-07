@@ -1,8 +1,5 @@
-INDEX VERSION 1.4+D:\advancia_stage\EsercizioKebab\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3147324129.index
-3044409850.index
-940622461.index
-1567470159.index
-306817055.index
-612371142.index
-1878699285.index
+INDEX VERSION 1.4+C:\Users\franc\Desktop\Lavoro\WebappKebab\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+945038788.index
+2605878789.index
+934327592.index
+392557308.index
