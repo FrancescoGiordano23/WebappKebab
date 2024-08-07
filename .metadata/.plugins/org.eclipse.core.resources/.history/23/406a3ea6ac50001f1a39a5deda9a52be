@@ -1,0 +1,5 @@
+package com.advancia.Utility;
+
+public class DatabaseConnection {
+
+}

@@ -1,0 +1,11 @@
+package com.advancia.DAO;
+
+import com.advancia.java.User;
+
+public class UsersDatabaseDAO {
+
+	public static boolean CanLogin(User userToCheck) {
+		return false;
+		
+	}
+}

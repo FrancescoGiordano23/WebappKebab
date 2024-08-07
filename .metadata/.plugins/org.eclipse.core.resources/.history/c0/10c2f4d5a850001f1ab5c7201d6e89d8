@@ -1,0 +1,25 @@
+package com.advancia.java;
+
+public class User {
+
+	
+	
+	
+	private String username;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String value) {
+		username=value;
+	}
+
+	
+	private String password;
+	public String getpassword() {
+		return password;
+	}
+	public void setPassword(String value) {
+		password=value;
+	}
+
+}

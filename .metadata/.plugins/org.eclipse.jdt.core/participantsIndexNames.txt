@@ -1,0 +1,3 @@
+INDEX VERSION 1.134
+D:\advancia_stage\EsercizioKebab\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3044409850.index
+\EsercizioKebab\src\main\resources

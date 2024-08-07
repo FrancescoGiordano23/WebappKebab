@@ -1,0 +1,33 @@
+package com.advancia.DAO;
+
+import com.advancia.java.User;
+
+import jakarta.websocket.Session;
+
+import java.sql.Connection;
+
+import com.advancia.Utility.JpaUtil;
+
+public class UserDatabaseDAO {
+
+	public static boolean CheckIfUserInUserTable(User userToCheck) {
+
+		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+	    EntityTransaction entityTransaction = null;
+	    try {
+	        entityTransaction = entityManager.getTransaction();
+	        entityTransaction.begin();
+	        Student student = new Student("UGO", "ROSSI", "UgoRossi26@javaguides.com");
+	        entityManager.persist(student);
+	        entityTransaction.commit();
+	    } catch (Exception e) {
+	        if (entityTransaction != null && entityTransaction.isActive()) {
+	            entityTransaction.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        entityManager.close();
+	    }
+
+	}
+}

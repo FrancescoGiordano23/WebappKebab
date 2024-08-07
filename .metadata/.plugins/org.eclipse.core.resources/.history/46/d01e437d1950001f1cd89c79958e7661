@@ -1,0 +1,46 @@
+package com.advancia.java;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="kebab_table")
+public class Kebab {
+	
+	@Id	
+	@Column(name="kebab_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;	
+	public int getId() {
+		return id;
+	}
+	public void setId(int value) {
+		id=value;
+	}
+	
+	@Column(name="kebab_name")
+	private String name;	
+	public String getName() {
+		return name;
+	}
+	public void setName(String value) {
+		name=value;
+	}
+	
+	@Column(name="kebab_price")	
+	private int price;
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int value) {
+		price=value;
+	}
+
+	
+	private PrimaryIngredient primaryIngredient;
+	public PrimaryIngredient getPrimaryIngredient() {
+		return primaryIngredient;
+	}
+	public void setPrimaryIngredient(PrimaryIngredient value) {
+		primaryIngredient=value;
+	}
+}

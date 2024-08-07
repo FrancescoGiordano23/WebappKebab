@@ -1,0 +1,203 @@
+package com.advancia.Utility;
+
+import java.util.List;
+
+import com.advancia.DAO.KebabDAO;
+import com.advancia.java.*;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transaction;
+
+public class KebabServices {
+
+	public static List<Container> GetAllContainers() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetAllContainers(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static List<PrimaryIngredient> GetAllPrimaryIngredients() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetAllPrimaryIngredients(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static List<SecondaryIngredient> GetAllSecondaryIngredients() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetAllSecondaryIngredients(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static List<SauceIngredient> GetAllSauceIngredients() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetAllSauceIngredients(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static Container GetContainerById(int selectedContainerId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetContainerById(manager, selectedContainerId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static PrimaryIngredient GetPrimaryIngredientById(int selectedPrimaryId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetPrimaryIngredientById(manager, selectedPrimaryId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static SecondaryIngredient GetSecondaryIngredientById(int selectedSecondaryId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			KebabDAO.GetSecondaryIngredientById(manager, selectedSecondaryId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static SauceIngredient GetSauceIngredientById(int selectedSauceId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return KebabDAO.GetSauceIngredientById(manager, selectedSauceId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static void CreateNewKebab(String name, int containerId, int primaryId, List<Integer> sauceIds,
+			List<Integer> secondaryIds, User user, int price) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+
+			Kebab kebabToAdd = new Kebab();
+			kebabToAdd.setUser(user);
+			kebabToAdd.setName(name);
+			kebabToAdd.setContainer(KebabDAO.GetContainerById(manager, containerId));
+			kebabToAdd.setPrimaryIngredient(KebabDAO.GetPrimaryIngredientById(manager, primaryId));
+			kebabToAdd.setPrice(price);
+			for (Integer i : sauceIds)
+				kebabToAdd.AddSauceIngredientToList(KebabDAO.GetSauceIngredientById(manager, i));
+			for (Integer i : secondaryIds)
+				kebabToAdd.AddSecondaryIngredientToList(KebabDAO.GetSecondaryIngredientById(manager, i));
+			user.getKebabsCreated().add(kebabToAdd);
+			KebabDAO.AddNewKebab(manager, kebabToAdd);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+	}
+
+	public static List<Kebab> GetAllUserKebabs(User user) {
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,36 @@
+package com.advancia.DAO;
+
+import com.advancia.java.User;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import com.advancia.Utility.JpaUtil;
+
+public class UserDatabaseDAO {
+
+	public static boolean CheckIfUserInUserTable(User userToCheck) {
+		boolean finded = false;
+		EntityManager entityManager = JpaUtil.getEntityManagerFactory().createEntityManager();
+		EntityTransaction entityTransaction = null;
+		try {
+			entityTransaction = entityManager.getTransaction();
+			entityTransaction.begin();
+			if (entityManager.find(User.class, userToCheck.getId()) != null)
+				finded = true;
+
+			entityTransaction.commit();
+
+		} catch (
+
+		Exception e) {
+			if (entityTransaction != null && entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			
+			entityManager.close();			
+		}
+
+	}
+}

@@ -1,0 +1,13 @@
+package com.advancia.Utility;
+
+import com.advancia.DAO.UserDatabaseDAO;
+import com.advancia.java.User;
+
+public class UserServices {
+
+	public static boolean CanLogin(String username, String password) {
+		
+		return UserDatabaseDAO.FindUserInDatabase(username,password) != null;
+		
+	}
+}

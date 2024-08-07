@@ -1,0 +1,45 @@
+package com.advancia.servlet;
+
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.websocket.Session;
+
+import com.advancia.Utility.*;
+import com.advancia.java.User;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public LoginServlet() {
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.getSession().setAttribute("User", null);
+		String password = request.getParameter("password");
+		String username = request.getParameter("username");
+		User user=UserServices.GetUser(username, password);
+		if (user!=null) {
+			request.getSession().setAttribute("User", user);
+			request.getRequestDispatcher("ShowKebabServlet").forward(request, response);
+		} else {
+			request.setAttribute("invalidCredentials", true);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
+
+	}
+
+}

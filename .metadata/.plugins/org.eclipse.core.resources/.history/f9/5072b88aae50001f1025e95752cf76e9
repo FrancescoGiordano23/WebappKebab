@@ -1,0 +1,26 @@
+package com.advancia.Utility;
+
+
+import java.sql.Connection;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class JpaUtil {
+    private static final String PERSISTENCE_UNIT_NAME = "PERSISTENCE";
+    private static EntityManagerFactory factory;
+
+    public static EntityManagerFactory getEntityManagerFactory() {
+        if (factory == null) {
+            factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        }
+        return factory;
+    }
+
+    public static void shutdown() {
+        if (factory != null) {
+            factory.close();
+        }
+    }
+}
+

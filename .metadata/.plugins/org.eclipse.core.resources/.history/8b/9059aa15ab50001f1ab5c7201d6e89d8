@@ -1,0 +1,15 @@
+package com.advancia.Utility;
+
+import com.advancia.java.User;
+
+public class UsersDatabaseUtility {
+
+	public static boolean CanLogin(String username, String password) {
+		
+		User userToCheck = new User();
+		userToCheck.setPassword(password);
+		userToCheck.setUsername(password);
+		return false;
+		
+	}
+}

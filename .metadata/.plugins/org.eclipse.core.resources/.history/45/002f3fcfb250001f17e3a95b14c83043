@@ -1,0 +1,37 @@
+package com.advancia.DAO;
+
+import com.advancia.java.User;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import com.advancia.Utility.JpaUtil;
+
+public class UserDatabaseDAO {
+
+	public static User FindUserInDatabase(String username, String password) {
+        EntityManager entityManager = null;
+        User userToReturn=null;
+       
+        try {
+            entityManager = JpaUtil.getEntityManagerFactory().createEntityManager();
+
+            // Use JPQL or Criteria API to query for user based on username and password
+            String query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password";
+            User userToReturn = entityManager.createQuery(query, User.class)
+                                     .setParameter("username", username)
+                                     .setParameter("password", password)
+                                     .getResultStream()
+                                     .findFirst()
+                                     .orElse(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+
+        return userToReturn;
+    }
+}

@@ -1,0 +1,203 @@
+package com.advancia.DAO;
+
+import java.util.List;
+
+import com.advancia.java.Container;
+import com.advancia.java.Kebab;
+import com.advancia.java.PrimaryIngredient;
+import com.advancia.java.SauceIngredient;
+import com.advancia.java.SecondaryIngredient;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import com.advancia.Utility.JpaUtil;
+
+public class KebabDAO {
+
+	public static List<Container> GetAllContainers() {
+		EntityManager manager = null;
+		List<Container> listToReturn = null;
+
+		try {
+			manager = JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query = manager.createNamedQuery("GetAllContainers", Container.class);
+			listToReturn = query.getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace(); // Log the exception
+		} finally {
+			if (manager != null) {
+				manager.close();
+			}
+		}
+
+		return listToReturn;
+	}
+
+	public static List<PrimaryIngredient> GetAllPrimaryIngredients() {
+
+		EntityManager manager = null;
+		List<PrimaryIngredient> listToReturn = null;
+
+		try {
+			manager = JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query = manager.createNamedQuery("GetAllPrimaryIngredients", PrimaryIngredient.class);
+			listToReturn = query.getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+		return listToReturn;
+	}
+
+	public static List<SecondaryIngredient> GetAllSecondaryIngredients(){
+		
+		EntityManager manager=null;
+		List<SecondaryIngredient> listToReturn=null;
+		try {
+			manager=JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query = manager.createNamedQuery("GetAllSecondaryIngredients",SecondaryIngredient.class);
+			listToReturn=query.getResultList();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(manager!=null)
+				manager.close();
+		}
+		return listToReturn;
+	}
+
+	public static List<SauceIngredient> GetAllSauceIngredients(){
+		
+		EntityManager manager=null;
+		List<SauceIngredient> listToReturn=null;
+		try {
+			manager=JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query = manager.createNamedQuery("GetAllSauceIngredients",SauceIngredient.class);
+			listToReturn=query.getResultList();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(manager!=null)
+				manager.close();
+		}
+		return listToReturn;
+	}
+
+	public static Container GetContainerById(int selectedContainerId) {
+		EntityManager manager=null;
+		Container containerToReturn=null;
+		
+		try {
+			manager=JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query= manager.createNamedQuery("GetContainerById", Container.class);
+			query.setParameter("id", selectedContainerId);
+			containerToReturn=(Container) query.getSingleResult();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(manager!=null)
+				manager.close();
+		}
+		
+		return containerToReturn;
+	}
+    
+	public static PrimaryIngredient GetPrimaryIngredientById(int selectedPrimaryId) {
+		EntityManager manager=null;
+		PrimaryIngredient primaryToReturn=null;
+		
+		try {
+			manager=JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query= manager.createNamedQuery("GetPrimaryIngredientById", PrimaryIngredient.class);
+			query.setParameter("id", selectedPrimaryId);
+			primaryToReturn=(PrimaryIngredient) query.getSingleResult();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(manager!=null)
+				manager.close();
+		}
+		
+		return primaryToReturn;
+	}
+	
+	public static SecondaryIngredient GetSecondaryIngredientById(int selectedSecondaryId) {
+		EntityManager manager=null;
+		SecondaryIngredient secondaryToReturn=null;
+		
+		try {
+			manager=JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query= manager.createNamedQuery("GetSecondaryIngredientById", SecondaryIngredient.class);
+			query.setParameter("id", selectedSecondaryId);
+			secondaryToReturn=(SecondaryIngredient) query.getSingleResult();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(manager!=null)
+				manager.close();
+		}
+		
+		return secondaryToReturn;
+	}
+
+	public static SauceIngredient GetSauceIngredientById(int selectedSauceId) {
+		EntityManager manager=null;
+		SauceIngredient sauceToReturn=null;
+		
+		try {
+			manager=JpaUtil.getEntityManagerFactory().createEntityManager();
+			Query query= manager.createNamedQuery("GetSauceIngredientById", SauceIngredient.class);
+			query.setParameter("id", selectedSauceId);
+			sauceToReturn=(SauceIngredient) query.getSingleResult();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(manager!=null)
+				manager.close();
+		}
+		
+		return sauceToReturn;
+	}
+
+	
+	
+	public static void addNewKebab(Kebab kebabToAdd) {
+	    EntityManager manager = null;
+	    EntityTransaction transaction = null;
+
+	    try {
+	        manager = JpaUtil.getEntityManagerFactory().createEntityManager();
+	        transaction = manager.getTransaction();
+	        transaction.begin(); // Begin transaction
+
+	        manager.persist(kebabToAdd);
+	        
+	        transaction.commit(); // Commit transaction
+
+	    } catch (RuntimeException e) {
+	        if (transaction != null && transaction.isActive()) {
+	            transaction.rollback(); // Rollback transaction on error
+	        }
+	        e.printStackTrace(); // Log the exception or handle it appropriately
+
+	    } finally {
+	        if (manager != null) {
+	            manager.close(); // Always close EntityManager
+	        }
+	    }
+	}
+}

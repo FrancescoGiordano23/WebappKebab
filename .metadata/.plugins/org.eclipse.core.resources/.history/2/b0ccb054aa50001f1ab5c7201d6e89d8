@@ -1,0 +1,8 @@
+package com.advancia.DAO;
+
+public class UsersDatabaseDAO {
+
+	public static boolean CanLogin() {
+		
+	}
+}
