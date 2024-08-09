@@ -2,7 +2,7 @@ package com.advancia.java;
 
 import java.util.List;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "primary_ingredient_table")
@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 @NamedQueries({
 
 		@NamedQuery(name = "GetAllPrimaryIngredients", query = "SELECT p from PrimaryIngredient p"),
-		@NamedQuery(name = "GetPrimaryIngredientById", query = "SELECT p FROM PrimaryIngredient p WHERE id = :id") })
+		@NamedQuery(name = "GetPrimaryIngredientById", query = "SELECT p FROM PrimaryIngredient p WHERE p.id = :id") })
 
 public class PrimaryIngredient {
 

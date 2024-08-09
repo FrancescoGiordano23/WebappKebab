@@ -27,7 +27,7 @@
 	<GlobalNamingResources>
 		<!-- Editable user database that can also be used by UserDatabaseRealm 
 			to authenticate users -->
-		<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="20" maxWait="10000" minIdle="5" name="jdbc/globalKebabDatabase" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/kebabDatabase" username="root"/>
+		<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxActive="100" maxIdle="20" maxWait="10000" minIdle="5" name="jdbc/globalKebabDatabase" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/kebabDatabase" username="root"/>
 		<Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
 	</GlobalNamingResources>
 

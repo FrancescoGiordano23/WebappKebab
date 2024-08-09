@@ -2,8 +2,7 @@ package com.advancia.DAO;
 
 import com.advancia.java.User;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
+import javax.persistence.*;
 import com.advancia.Utility.JpaUtil;
 
 public class UserDAO {

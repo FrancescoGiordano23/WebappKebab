@@ -1,0 +1,17 @@
+package com.advancia.Utility;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+@Path("/primaryIngredients")
+public class PrimaryIngredientServices {
+
+	
+	 @GET
+	    @Produces(MediaType.TEXT_PLAIN)
+	    public String direBonjour() {
+	        return "Bonjour, tout le monde!";
+	    }
+}

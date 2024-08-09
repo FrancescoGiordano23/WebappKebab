@@ -1,0 +1,12 @@
+package com.advancia.Utility;
+
+@Path("/primaryIngredients")
+public class PrimaryIngredientServices {
+
+	
+	 @GET
+	    @Produces(MediaType.TEXT_PLAIN)
+	    public String direBonjour() {
+	        return "Bonjour, tout le monde!";
+	    }
+}

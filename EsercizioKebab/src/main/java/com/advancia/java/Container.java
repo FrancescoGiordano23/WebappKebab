@@ -2,14 +2,14 @@ package com.advancia.java;
 
 import java.util.List;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "container_table")
 
 @NamedQueries({ 
 	@NamedQuery(name = "GetAllContainers", query = "SELECT c FROM Container c"),
-	@NamedQuery(name = "GetContainerById", query = "SELECT c FROM Container c WHERE id =:id") 
+	@NamedQuery(name = "GetContainerById", query = "SELECT c FROM Container c WHERE c.id =:id") 
 	})
 public class Container {
 

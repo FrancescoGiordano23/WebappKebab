@@ -3,12 +3,12 @@ package com.advancia.java;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name="kebab_table")
 @NamedQueries({
-	@NamedQuery(name = "GetAllKebabsOfUser", query = "SELECT k from Kebab k WHERE user=:user")
+	@NamedQuery(name = "GetAllKebabsOfUser", query = "SELECT k from Kebab k WHERE k.user=:user")
 	
 })
 public class Kebab {

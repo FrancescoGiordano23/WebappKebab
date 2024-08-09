@@ -1,0 +1,6 @@
+package com.advancia.Utility;
+
+@Path("/primaryIngredients")
+public class PrimaryIngredientServices {
+
+}

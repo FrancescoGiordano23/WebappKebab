@@ -35,7 +35,7 @@
 			to authenticate users -->
 		<Resource name="jdbc/globalKebabDatabase" 
 			auth="Container" type="javax.sql.DataSource"
-			driverClassName="com.mysql.jdbc.Driver"
+			driverClassName="com.mysql.cj.jdbc.Driver"
 			url="jdbc:mysql://localhost:3306/kebabDatabase" username="root"
 			password="root" maxActive="100" maxIdle="20" minIdle="5"
 			maxWait="10000" />

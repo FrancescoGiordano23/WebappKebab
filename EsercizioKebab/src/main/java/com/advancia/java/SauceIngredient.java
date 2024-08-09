@@ -1,6 +1,6 @@
 package com.advancia.java;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sauce_ingredient_table")
@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @NamedQueries({
 
 		@NamedQuery(name = "GetAllSauceIngredients", query = "SELECT s from SauceIngredient s"),
-		@NamedQuery(name = "GetSauceIngredientById", query = "SELECT s FROM SauceIngredient s WHERE id = :id") })
+		@NamedQuery(name = "GetSauceIngredientById", query = "SELECT s FROM SauceIngredient s WHERE s.id = :id") })
 
 public class SauceIngredient {
 

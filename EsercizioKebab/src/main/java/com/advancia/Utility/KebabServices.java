@@ -5,8 +5,7 @@ import java.util.List;
 import com.advancia.DAO.KebabDAO;
 import com.advancia.java.*;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import javax.persistence.*;;
 
 public class KebabServices {
 

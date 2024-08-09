@@ -1,10 +1,6 @@
 package com.advancia.Utility;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
-import jakarta.transaction.Transaction;
+import javax.persistence.*;
 
 public class JpaUtil {
 	private static final String PERSISTENCE_UNIT_NAME = "kebabPersistance";
