@@ -22,3 +22,5 @@
 0:0:0:0:0:0:0:1 - - [09/Aug/2024:15:11:41 +0200] "GET /EsercizioKebab HTTP/1.1" 302 -
 0:0:0:0:0:0:0:1 - - [09/Aug/2024:15:11:41 +0200] "GET /EsercizioKebab/ HTTP/1.1" 200 1845
 0:0:0:0:0:0:0:1 - - [09/Aug/2024:15:11:49 +0200] "POST /EsercizioKebab/LoginServlet HTTP/1.1" 200 1865
+127.0.0.1 - - [09/Aug/2024:16:19:22 +0200] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [09/Aug/2024:16:19:27 +0200] "GET /EsercizioKebab/rest/primaryIngredients HTTP/1.1" 200 23

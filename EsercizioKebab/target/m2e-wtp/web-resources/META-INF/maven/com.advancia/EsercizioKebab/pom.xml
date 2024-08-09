@@ -9,7 +9,7 @@
 	<name>EsercizioKebab Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-<!--TEST-->
+
 
 		<dependency>
 			<groupId>junit</groupId>
