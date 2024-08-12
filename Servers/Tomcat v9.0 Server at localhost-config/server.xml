@@ -33,12 +33,12 @@
 	<GlobalNamingResources>
 		<!-- Editable user database that can also be used by UserDatabaseRealm 
 			to authenticate users -->
-		<Resource name="jdbc/globalKebabDatabase" 
-			auth="Container" type="javax.sql.DataSource"
-			driverClassName="com.mysql.cj.jdbc.Driver"
-			url="jdbc:mysql://localhost:3306/kebabDatabase" username="root"
-			password="root" maxActive="100" maxIdle="20" minIdle="5"
-			maxWait="10000" />
+		<Resource auth="Container"
+			driverClassName="com.mysql.cj.jdbc.Driver" maxActive="100"
+			maxIdle="20" maxWait="10000" minIdle="5"
+			name="jdbc/globalKebabDatabase" password="root"
+			type="javax.sql.DataSource"
+			url="jdbc:mysql://localhost:3306/kebabDatabase" username="root" />
 		<Resource auth="Container"
 			description="User database that can be updated and saved"
 			factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
@@ -128,6 +128,7 @@
 				<Valve className="org.apache.catalina.valves.AccessLogValve"
 					directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b"
 					prefix="localhost_access_log" suffix=".txt" />
+
 
 				<Context docBase="EsercizioKebab" path="/EsercizioKebab"
 					reloadable="true"

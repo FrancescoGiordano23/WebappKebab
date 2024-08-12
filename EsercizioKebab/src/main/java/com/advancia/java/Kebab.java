@@ -1,106 +1,119 @@
 package com.advancia.java;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="kebab_table")
-@NamedQueries({
-	@NamedQuery(name = "GetAllKebabsOfUser", query = "SELECT k from Kebab k WHERE k.user=:user")
-	
-})
+@Table(name = "kebab_table")
+@NamedQueries({ @NamedQuery(name = "GetAllKebabsOfUser", query = "SELECT k from Kebab k WHERE k.user=:user") })
 public class Kebab {
-	
-	@Id	
-	@Column(name="kebab_id")
+
+	@Id
+	@Column(name = "kebab_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;	
+	private int id;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int value) {
-		id=value;
+		id = value;
 	}
-	
-	@Column(name="kebab_name")
-	private String name;	
+
+	@Column(name = "kebab_name")
+	private String name;
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String value) {
-		name=value;
+		name = value;
 	}
-	
-	@Column(name="kebab_price")	
+
+	@Column(name = "kebab_price")
 	private int price;
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int value) {
-		price=value;
+		price = value;
 	}
 
 	@ManyToOne
-	@JoinColumn(name="primary_id")
+	@JoinColumn(name = "primary_id")
 	private PrimaryIngredient primaryIngredient;
+
 	public PrimaryIngredient getPrimaryIngredient() {
 		return primaryIngredient;
-	}	
+	}
+
 	public void setPrimaryIngredient(PrimaryIngredient value) {
-		primaryIngredient=value;
+		primaryIngredient = value;
 	}
 
 	@ManyToOne
-	@JoinColumn(name="container_id")
+	@JoinColumn(name = "container_id")
 	private Container container;
+
 	public Container getContainer() {
 		return container;
-	}	
-	public void setContainer(Container value) {
-		container=value;
-	}
-	
-	@ManyToMany(targetEntity = SecondaryIngredient.class, fetch=FetchType.EAGER)
-	@JoinTable(name = "kebab_secondary_table", 
-				joinColumns = { @JoinColumn(name = "kebab_id") }, 
-				inverseJoinColumns = { @JoinColumn(name = "secondary_id") })
-	private List<SecondaryIngredient> secondaryIngredientsList = new ArrayList<SecondaryIngredient>();
-	public List<SecondaryIngredient> getSecondaryIngredients(){
-		return secondaryIngredientsList;
-	}
-	public void AddSecondaryIngredientToList(SecondaryIngredient value) {
-		secondaryIngredientsList.add(value);
-	}
-	public void RemoveSecondaryIngredientFromList(SecondaryIngredient value) {
-		secondaryIngredientsList.remove(value);
 	}
 
-	@ManyToMany(targetEntity = SauceIngredient.class,fetch=FetchType.EAGER)
-	@JoinTable(name = "kebab_sauce_table", 
-				joinColumns = { @JoinColumn(name = "kebab_id") }, 
-				inverseJoinColumns = { @JoinColumn(name = "sauce_id") })
-	private List<SauceIngredient> sauceIngredientsList = new ArrayList<SauceIngredient>();
-	public List<SauceIngredient> getSauceIngredients(){
+	public void setContainer(Container value) {
+		container = value;
+	}
+
+	@ManyToMany(targetEntity = SecondaryIngredient.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "kebab_secondary_table", joinColumns = { @JoinColumn(name = "kebab_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "secondary_id") })
+	private Set<SecondaryIngredient> secondaryIngredientsSet = new HashSet<>(); // Changed to Set
+
+	public Set<SecondaryIngredient> getSecondaryIngredients() {
+		return secondaryIngredientsSet;
+	}
+
+	public void addSecondaryIngredientToSet(SecondaryIngredient value) {
+		secondaryIngredientsSet.add(value);
+	}
+
+	public void removeSecondaryIngredientFromList(SecondaryIngredient value) {
+		secondaryIngredientsSet.remove(value);
+	}
+
+	@ManyToMany(targetEntity = SauceIngredient.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "kebab_sauce_table", joinColumns = { @JoinColumn(name = "kebab_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "sauce_id") })
+	private List<SauceIngredient> sauceIngredientsList = new ArrayList<>();
+
+	public List<SauceIngredient> getSauceIngredients() {
 		return sauceIngredientsList;
 	}
-	public void AddSauceIngredientToList(SauceIngredient value) {
+
+	public void addSauceIngredientToList(SauceIngredient value) {
 		sauceIngredientsList.add(value);
 	}
-	public void RemoveSauceIngredientFromList(SauceIngredient value) {
+
+	public void removeSauceIngredientFromList(SauceIngredient value) {
 		sauceIngredientsList.remove(value);
 	}
 
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User value) {
-		user=value;
+		user = value;
 	}
-	
 }
