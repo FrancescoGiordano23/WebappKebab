@@ -1,10 +1,9 @@
 package com.advancia.Modal;
 
 import java.util.List;
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+import javax.persistence.*;
+
 @Entity
 @Table(name = "primary_ingredient_table")
 
@@ -50,7 +49,7 @@ public class PrimaryIngredient {
 		price = value;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "primaryIngredient")
+	@OneToMany(mappedBy = "primaryIngredient")
 	private List<Kebab> kebabWithThisPrimaryList;
 
 }

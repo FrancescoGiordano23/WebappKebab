@@ -13,7 +13,7 @@ public class PrimaryIngredientServices {
 
 	
 	 @GET
-	    @Produces(MediaType.APPLICATION_XML)
+	    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_XML})
 	    public List<PrimaryIngredient> getAllIngredientOfDatabase() {
 	        return KebabServices.GetAllPrimaryIngredients();
 	 

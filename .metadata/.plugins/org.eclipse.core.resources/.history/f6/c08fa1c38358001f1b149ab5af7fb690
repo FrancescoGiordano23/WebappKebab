@@ -1,10 +1,14 @@
 package com.advancia.Modal;
 
 import java.util.List;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "employee")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "primary_ingredient_table")
 
@@ -50,7 +54,7 @@ public class PrimaryIngredient {
 		price = value;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "primaryIngredient")
+	@OneToMany(mappedBy = "primaryIngredient")
 	private List<Kebab> kebabWithThisPrimaryList;
 
 }
