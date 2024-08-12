@@ -1,7 +1,7 @@
 <%-- <%@page import="org.hibernate.engine.spi.PrimeAmongSecondarySupertypes"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.List"
-	import="com.advancia.java.*"%>
+	import="com.advancia.Modal.*"%>
 <!DOCTYPE html>
 <html>
 <head>

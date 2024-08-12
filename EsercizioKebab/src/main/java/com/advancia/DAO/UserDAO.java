@@ -1,6 +1,6 @@
 package com.advancia.DAO;
 
-import com.advancia.java.User;
+import com.advancia.Modal.User;
 
 import javax.persistence.*;
 import com.advancia.Utility.JpaUtil;

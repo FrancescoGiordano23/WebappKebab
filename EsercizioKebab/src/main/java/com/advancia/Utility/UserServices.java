@@ -1,7 +1,7 @@
 package com.advancia.Utility;
 
 import com.advancia.DAO.UserDAO;
-import com.advancia.java.User;
+import com.advancia.Modal.User;
 
 public class UserServices {
 

@@ -3,7 +3,7 @@ package com.advancia.Utility;
 import java.util.List;
 
 import com.advancia.DAO.KebabDAO;
-import com.advancia.java.*;
+import com.advancia.Modal.*;
 
 import javax.persistence.*;;
 
@@ -178,9 +178,9 @@ public class KebabServices {
 			kebabToAdd.setPrimaryIngredient(KebabDAO.GetPrimaryIngredientById(manager, primaryId));
 			kebabToAdd.setPrice(price);
 			for (Integer i : sauceIds)
-				kebabToAdd.AddSauceIngredientToList(KebabDAO.GetSauceIngredientById(manager, i));
+				kebabToAdd.addSauceIngredientToList(KebabDAO.GetSauceIngredientById(manager, i));
 			for (Integer i : secondaryIds)
-				kebabToAdd.AddSecondaryIngredientToList(KebabDAO.GetSecondaryIngredientById(manager, i));
+				kebabToAdd.addSecondaryIngredientToSet(KebabDAO.GetSecondaryIngredientById(manager, i));
 			
 			
 			KebabDAO.AddNewKebab(manager, kebabToAdd);

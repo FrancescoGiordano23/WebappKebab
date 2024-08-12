@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.advancia.Utility.*;
-import com.advancia.java.User;
+import com.advancia.Modal.User;
 
 
 public class DeleteAllKebabServlet extends HttpServlet {

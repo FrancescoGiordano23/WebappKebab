@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;EsercizioKebab/src/main/java/com/advancia/java&apos; to &apos;Modal&apos;" description="Rename resource &apos;java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/advancia/java" name="Modal" stamp="1723449909677" updateReferences="true"/>
+</session>

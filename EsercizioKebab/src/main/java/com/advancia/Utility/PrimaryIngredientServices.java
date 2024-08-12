@@ -1,9 +1,12 @@
 package com.advancia.Utility;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import com.advancia.Modal.*;
 
 @Path("/primaryIngredients")
 public class PrimaryIngredientServices {
@@ -11,7 +14,8 @@ public class PrimaryIngredientServices {
 	
 	 @GET
 	    @Produces(MediaType.TEXT_PLAIN)
-	    public String direBonjour() {
-	        return "Bonjour, tout le monde!";
-	    }
+	    public List<PrimaryIngredient> getAllIngredientOfDatabase() {
+	        return KebabServices.GetAllPrimaryIngredients();
+	 
+	 }
 }
