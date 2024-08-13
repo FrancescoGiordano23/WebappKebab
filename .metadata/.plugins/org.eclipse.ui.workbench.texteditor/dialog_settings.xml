@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="ContainerValue"/>
+		<item key="selection" value="Container"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="secondaryIngredient"/>
+			<item value="secondary"/>
+			<item value="com.advancia.java"/>
+			<item value="java."/>
 			<item value="containerValue"/>
 			<item value="Create"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Container"/>
+			<item value="Sauce"/>
+			<item value="sauce"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1498"/>
-		<item key="DIALOG_Y_ORIGIN" value="196"/>
+		<item key="DIALOG_X_ORIGIN" value="1352"/>
+		<item key="DIALOG_Y_ORIGIN" value="131"/>
 		<item key="DIALOG_WIDTH" value="457"/>
-		<item key="DIALOG_HEIGHT" value="459"/>
+		<item key="DIALOG_HEIGHT" value="393"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|12.0|0|WINDOWS|1|-16|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

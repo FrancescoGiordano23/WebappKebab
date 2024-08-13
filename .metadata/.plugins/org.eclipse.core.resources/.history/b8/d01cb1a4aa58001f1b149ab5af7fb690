@@ -1,0 +1,53 @@
+package com.advancia.Utility;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.advancia.DAO.ContainerDAO;
+import com.advancia.Modal.Container;
+
+
+public class ContainerServices {
+
+	public static List<Container> GetAllContainers() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return ContainerDAO.getAllContainers(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static Container GetContainerById(int selectedContainerId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return ContainerDAO.getContainerById(manager, selectedContainerId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+
+}

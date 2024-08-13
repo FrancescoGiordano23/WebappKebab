@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.advancia.Utility.*;
+import com.advancia.DAO.SauceIngredientDAO;
 import com.advancia.Modal.*;
 
 public class CreateKebabServlet extends HttpServlet {
@@ -70,10 +71,10 @@ public class CreateKebabServlet extends HttpServlet {
 	private void createEnviroment(HttpServletRequest request,HttpServletResponse response,User user) {
 		
 		
-		List<Container> containers = KebabServices.GetAllContainers();
-		List<PrimaryIngredient> primaryIgredients = KebabServices.GetAllPrimaryIngredients();
-		List<SecondaryIngredient> secondaryIgredients = KebabServices.GetAllSecondaryIngredients();
-		List<SauceIngredient> sauceIgredients = KebabServices.GetAllSauceIngredients();
+		List<Container> containers = ContainerServices.getAllContainers();
+		List<PrimaryIngredient> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
+		List<SecondaryIngredient> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
+		List<SauceIngredient> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
 		List<Kebab> kebabs = KebabServices.GetAllUserKebabs(user);
 		
 

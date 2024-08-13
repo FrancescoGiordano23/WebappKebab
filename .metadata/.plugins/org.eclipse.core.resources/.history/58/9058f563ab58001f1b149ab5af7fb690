@@ -1,0 +1,35 @@
+package com.advancia.Utility;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.advancia.DAO.KebabDAO;
+import com.advancia.Modal.SauceIngredient;
+
+public class SauceIngredientServices {
+
+	public static List<SauceIngredient> getAllSauceIngredients() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return SauceIngredientServices.getAllSauceIngredients(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+	
+	
+	
+	
+}

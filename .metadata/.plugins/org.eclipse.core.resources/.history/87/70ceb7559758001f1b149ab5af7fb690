@@ -1,0 +1,43 @@
+package com.advancia.Utility;
+
+import java.util.List;
+
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.advancia.Modal.PrimaryIngredient;
+
+@Path("/primaryIngredients")
+public class PrimaryIngredientRest {
+
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<PrimaryIngredient> getAllIngredientOfDatabase() {
+
+		// Response.status(200).entity(KebabServices.GetAllPrimaryIngredients()).build();
+		// Response.ok(KebabServices.GetAllPrimaryIngredients()).build();
+		return PrimaryIngredientServices.getAllPrimaryIngredients();
+
+	}
+
+	@DELETE
+	@Path("/Delete{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public void deletePrimaryIngredientById(@PathParam("id") int id) {
+		PrimaryIngredientServices.deletePrimaryIngredientById(id);
+	}
+
+	@PUT
+	@Path("/update{id,name,price}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public void updatePrimaryIngredientById(@PathParam("id") int id, @PathParam("name") String name,
+			@PathParam("price") int price) {
+		PrimaryIngredientServices.updatePrimaryIngredientById(id,name,price);
+	}
+}

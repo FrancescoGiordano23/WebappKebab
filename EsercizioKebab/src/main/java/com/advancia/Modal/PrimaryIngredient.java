@@ -11,7 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
 
 		@NamedQuery(name = "GetAllPrimaryIngredients", query = "SELECT p from PrimaryIngredient p"),
-		@NamedQuery(name = "GetPrimaryIngredientById", query = "SELECT p FROM PrimaryIngredient p WHERE p.id = :id") })
+		@NamedQuery(name = "GetPrimaryIngredientById", query = "SELECT p FROM PrimaryIngredient p WHERE p.id = :id")
+})
 
 public class PrimaryIngredient {
 

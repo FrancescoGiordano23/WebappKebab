@@ -45,10 +45,10 @@ public class LoginServlet extends HttpServlet {
 private void createEnviroment(HttpServletRequest request,User user) {
 		
 		
-		List<Container> containers = KebabServices.GetAllContainers();
-		List<PrimaryIngredient> primaryIgredients = KebabServices.GetAllPrimaryIngredients();
-		List<SecondaryIngredient> secondaryIgredients = KebabServices.GetAllSecondaryIngredients();
-		List<SauceIngredient> sauceIgredients = KebabServices.GetAllSauceIngredients();
+		List<Container> containers = ContainerServices.getAllContainers();
+		List<PrimaryIngredient> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
+		List<SecondaryIngredient> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
+		List<SauceIngredient> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
 		List<Kebab> kebabs = KebabServices.GetAllUserKebabs(user);
 		
 		if(user==null) 

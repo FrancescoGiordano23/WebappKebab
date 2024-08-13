@@ -1,0 +1,64 @@
+package com.advancia.Rest;
+
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.advancia.Modal.PrimaryIngredient;
+import com.advancia.Utility.PrimaryIngredientServices;
+
+@Path("/ingredients")
+public class PrimaryIngredientRest {
+
+	@GET
+	@Path("/")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<PrimaryIngredient> getAllPrimaryIngredients() {
+		return PrimaryIngredientServices.getAllPrimaryIngredients();
+	}
+
+	@GET
+	@Path("/{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public PrimaryIngredient getPrimaryIngredientById(@PathParam("id") int selectedPrimaryId) {
+
+		return PrimaryIngredientServices.getPrimaryIngredientById(selectedPrimaryId);
+	}
+
+	@DELETE
+	@Path("/{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public void deleteAllPrimaryIngredient() {
+		PrimaryIngredientServices.deleteAllPrimaryIngredients();
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public void deletePrimaryIngredientById(@PathParam("id") int selectedPrimaryId) {
+		PrimaryIngredientServices.deletePrimaryIngredientById(selectedPrimaryId);
+	}
+
+	@PUT
+	@Path("/{id}/{name}/{price}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public void updatePrimaryIngredientById(@PathParam("id") int selectedPrimaryId, @PathParam("name") String newName,
+			@PathParam("price") int newPrice) {
+		PrimaryIngredientServices.updatePrimaryIngredientById(selectedPrimaryId, newName, newPrice);
+	}
+
+	@POST
+	@Path("/{name}/{price}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public void createPrimaryIngredient(@PathParam("name") String name, @PathParam("price") int price) {
+		PrimaryIngredientServices.createPrimaryIngredient(name, price);
+	}
+
+}
