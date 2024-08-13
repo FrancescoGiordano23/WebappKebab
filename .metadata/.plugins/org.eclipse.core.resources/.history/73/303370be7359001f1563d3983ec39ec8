@@ -1,0 +1,135 @@
+package com.advancia.Utility;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.advancia.DAO.ContainerDAO;
+import com.advancia.DAO.UserDAO;
+import com.advancia.Modal.Container;
+import com.advancia.Modal.User;
+
+public class UserServices {
+
+	public static User CheckAndGetUserByCredentials(String username, String password) {
+
+		return UserDAO.FindUserInDatabase(username, password);
+
+	}
+
+	public static List<User> getAllUsers() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return UserDAO.getAllUsers(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static User getUserById(int selectedUserId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return UserDAO.getUserById(manager, selectedUserId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static boolean deleteUserById(int selectedSecondaryId) {
+		boolean deleteSuccessfull = false;
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = manager.getTransaction();
+			transaction.begin();
+			deleteSuccessfull = UserDAO.deleteUserById(manager, selectedSecondaryId);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+		return deleteSuccessfull;
+	}
+
+	public static boolean updateUserById(int selectedUserId, String newUsername, String newPassword) {
+		boolean updateSuccessfull = false;
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = manager.getTransaction();
+			transaction.begin();
+			User UserToUpdate = UserDAO.getUserById(manager, selectedUserId);
+			if (UserToUpdate != null) {
+				UserToUpdate.setUsername(newUsername);
+				UserToUpdate.setPassword(newPassword);
+				transaction.commit();
+				updateSuccessfull = true;
+			} else {
+				transaction.rollback();
+			}
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+		return updateSuccessfull;
+	}
+
+	public static boolean createUser(String name, int price) {
+
+		boolean createSuccessfull = false;
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = manager.getTransaction();
+			transaction.begin();
+			Container newContainer = new Container();
+			newContainer.setName(name);
+			newContainer.setPrice(price);
+			createSuccessfull = ContainerDAO.createNewContainer(manager, newContainer);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+		return createSuccessfull;
+	}
+}

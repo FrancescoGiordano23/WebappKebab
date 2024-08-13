@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String password = request.getParameter("password");
 		String username = request.getParameter("username");
-		User user=UserServices.GetUser(username, password);
+		User user=UserServices.CheckAndGetUserByCredentials(username, password);
 		if (user!=null) {
 			request.getSession().setAttribute("User", user);
 			createEnviroment(request, user);

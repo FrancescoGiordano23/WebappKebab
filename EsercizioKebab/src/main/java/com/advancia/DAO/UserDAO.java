@@ -2,6 +2,8 @@ package com.advancia.DAO;
 
 import com.advancia.Modal.User;
 
+import java.util.List;
+
 import javax.persistence.*;
 import com.advancia.Utility.JpaUtil;
 
@@ -30,4 +32,49 @@ public class UserDAO {
 
 		return userToReturn;
 	}
+
+	public static User getUserById(EntityManager manager, int selectedUserId) {
+
+		User userToReturn = null;
+
+		Query query = manager.createNamedQuery("GetUserById", User.class);
+		query.setParameter("id", selectedUserId);
+		userToReturn = (User) query.getSingleResult();
+
+		return userToReturn;
+	}
+
+	public static List<User> getAllUsers(EntityManager manager) {
+
+		List<User> listToReturn = null;
+
+		Query query = manager.createNamedQuery("GetAllUsers", User.class);
+		listToReturn = query.getResultList();
+
+		return listToReturn;
+	}
+	
+	public static boolean deleteUserById(EntityManager manager, int selectedUserId) {
+		try {
+			User userToReturn = null;
+			userToReturn = getUserById(manager, selectedUserId);
+			manager.remove(userToReturn);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public static boolean createNewUser(EntityManager manager, User newUser) {
+		try {
+			manager.persist(newUser);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }
