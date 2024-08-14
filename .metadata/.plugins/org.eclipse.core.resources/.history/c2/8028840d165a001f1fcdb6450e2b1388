@@ -1,0 +1,52 @@
+package com.advancia.Soap;
+import javax.jws.WebService;
+import javax.ws.rs.core.Response;
+
+import com.advancia.Soap.User.*;
+import com.advancia.Utility.UserServices;
+
+@WebService
+public class UserSoap implements UserWS{
+
+	@Override
+	public Response addUser(String username, String password) {
+		if (UserServices.createUser(username, password) == true)
+			return Response.ok().build();
+		else
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	}
+
+	@Override
+	public Response updateUser(Integer id, String newUsername, String newPassword) {
+		if(UserServices.updateUserById(id, newUsername, newPassword)==true)
+			return Response.ok().build();
+		else
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+			
+			
+	}
+
+	@Override
+	public Response deleteUser(Integer id) {
+		if(UserServices.deleteUserById(id)==true)
+			return Response.ok().build();
+		else
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	}
+
+	@Override
+	public Response getUser(Integer id) {
+		if(UserServices.getUserById(id)!=null)
+			return Response.ok(UserServices.getUserById(id)).build();
+		else
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	}
+
+	@Override
+	public Response getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

@@ -24,7 +24,6 @@
     <fullyQualifiedTypeName name="jakarta.persistence.EntityManagerFactory"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transaction"/>
     <fullyQualifiedTypeName name="com.advancia.java.Kebab"/>
-    <fullyQualifiedTypeName name="com.advancia.Utility.UserServices"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Query"/>
     <fullyQualifiedTypeName name="jakarta.persistence.NamedQuery"/>
     <fullyQualifiedTypeName name="jakarta.persistence.EntityManager"/>
@@ -58,4 +57,7 @@
     <fullyQualifiedTypeName name="com.advancia.DAO.ContainerDAO"/>
     <fullyQualifiedTypeName name="com.advancia.Utility.ContainerServices"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="com.advancia.Modal.User"/>
+    <fullyQualifiedTypeName name="com.advancia.DAO.UserDAO"/>
+    <fullyQualifiedTypeName name="com.advancia.Utility.UserServices"/>
 </qualifiedTypeNameHistroy>

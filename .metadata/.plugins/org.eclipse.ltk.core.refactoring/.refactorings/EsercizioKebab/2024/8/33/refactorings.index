@@ -19,3 +19,18 @@
 1723553367125	Rename local variable 'containerToReturn'
 1723553741821	Rename method 'GetUser'
 1723554119888	Delete element
+1723555748942	Delete element
+1723555759165	Delete element
+1723620660510	Move 'UserSchema.xsd' to 'META-INF'
+1723620662082	Move 'UserWS.wsdl' to 'META-INF'
+1723620680568	Move 'UserWS.wsdl' to 'wsdl'
+1723620729722	Delete element
+1723620751374	Delete element
+1723620759686	Delete elements
+1723620782975	Delete element
+1723621447270	Delete element
+1723621479533	Delete element
+1723621514447	Rename package 'com.advancia.Soap.user'
+1723632033289	Delete element
+1723632109801	Delete element
+1723632118377	Delete element
