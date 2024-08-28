@@ -1,8 +1,0 @@
-package com.advancia.Rest;
-
-import javax.ws.rs.Path;
-
-@Path("/primaryIngredients")
-public class PrimaryIngredientRest {
-
-}

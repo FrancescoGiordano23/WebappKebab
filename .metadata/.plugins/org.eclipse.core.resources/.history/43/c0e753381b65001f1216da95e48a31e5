@@ -1,0 +1,12 @@
+package com.advancia.soap;
+
+@WebService(serviceName = "userSoap")
+public class UserSoap {
+
+	@WebMethod(operationName = "getUserById")
+    public Models getUserId(@WebParam(name = "id") Integer id) throws Exception {
+        return modelsDao.getById(id);
+}
+	
+	
+}

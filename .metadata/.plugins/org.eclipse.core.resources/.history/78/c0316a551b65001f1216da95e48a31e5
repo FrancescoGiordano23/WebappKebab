@@ -1,0 +1,18 @@
+package com.advancia.soap;
+
+import com.advancia.Modal.User;
+import com.advancia.Utility.UserServices;
+
+@WebService(serviceName = "userSoap")
+public class UserSoap {
+
+	@WebMethod(operationName = "getUserById")
+	public User getUserId(@WebParam(name = "id") Integer id) throws Exception {
+		return UserServices.getUserById(id);
+	}
+	@WebMethod(operationName = "getAllUsers")
+	public List<User> getUserId(@WebParam(name = "id") Integer id) throws Exception {
+		return UserServices.getUserById(id);
+	}
+
+}

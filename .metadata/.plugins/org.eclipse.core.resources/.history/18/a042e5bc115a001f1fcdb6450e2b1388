@@ -1,6 +1,0 @@
-package com.advancia.Soap;
-import com.advancia.Soap.User.*;
-
-public class UserSoap {
-
-}
