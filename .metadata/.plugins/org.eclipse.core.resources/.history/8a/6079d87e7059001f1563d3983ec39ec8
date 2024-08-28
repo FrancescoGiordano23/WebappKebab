@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/UserWS/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserWS" targetNamespace="http://www.example.org/UserWS/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/UserWS/">
+      <xsd:element name="AddUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAllUsers">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetAllUsersResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AddUserRequest">
+    <wsdl:part element="tns:AddUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AddUserResponse">
+    <wsdl:part element="tns:AddUserResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserRequest">
+  	<wsdl:part name="parameters" element="tns:UpdateUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserResponse">
+  	<wsdl:part name="parameters" element="tns:UpdateUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserRequest">
+  	<wsdl:part name="parameters" element="tns:GetUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetUserResponse">
+  	<wsdl:part name="parameters" element="tns:GetUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllUsersRequest">
+  	<wsdl:part name="parameters" element="tns:GetAllUsers"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllUsersResponse">
+  	<wsdl:part name="parameters" element="tns:GetAllUsersResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserRequest">
+  	<wsdl:part name="parameters" element="tns:DeleteUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DeleteUserResponse">
+  	<wsdl:part name="parameters" element="tns:DeleteUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserWS">
+    <wsdl:operation name="AddUser">
+      <wsdl:input message="tns:AddUserRequest"/>
+      <wsdl:output message="tns:AddUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+    	<wsdl:input message="tns:UpdateUserRequest"></wsdl:input>
+    	<wsdl:output message="tns:UpdateUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+    	<wsdl:input message="tns:GetUserRequest"></wsdl:input>
+    	<wsdl:output message="tns:GetUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+    	<wsdl:input message="tns:GetAllUsersRequest"></wsdl:input>
+    	<wsdl:output message="tns:GetAllUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+    	<wsdl:input message="tns:DeleteUserRequest"></wsdl:input>
+    	<wsdl:output message="tns:DeleteUserResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserWSSOAP" type="tns:UserWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://www.example.org/UserWS/AddUser"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserWS">
+    <wsdl:port binding="tns:UserWSSOAP" name="UserWSSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

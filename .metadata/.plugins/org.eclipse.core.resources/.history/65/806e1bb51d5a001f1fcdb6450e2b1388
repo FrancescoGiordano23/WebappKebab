@@ -1,0 +1,39 @@
+package com.advancia.Soap.User;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.List;
+import com.advancia.Utility.User; // Adjust import based on where User class is defined
+
+@WebService(name = "UserWS", targetNamespace = "http://localhost:8080/EsercizioKebab")
+@XmlSeeAlso({ ObjectFactory.class // Adjust if needed
+})
+public interface UserWS {
+
+	@WebMethod(operationName = "AddUser", action = "http://localhost:8080/EsercizioKebab/AddUser")
+	@WebResult(name = "ResponseMessage", targetNamespace = "")
+	String addUser(@WebParam(name = "username", targetNamespace = "") String username,
+			@WebParam(name = "password", targetNamespace = "") String password);
+
+	@WebMethod(operationName = "UpdateUser", action = "http://localhost:8080/EsercizioKebab/UpdateUser")
+	@WebResult(name = "ResponseMessage", targetNamespace = "")
+	String updateUser(@WebParam(name = "id", targetNamespace = "") Integer id,
+			@WebParam(name = "newUsername", targetNamespace = "") String newUsername,
+			@WebParam(name = "newPassword", targetNamespace = "") String newPassword);
+
+	@WebMethod(operationName = "DeleteUser", action = "http://localhost:8080/EsercizioKebab/DeleteUser")
+	@WebResult(name = "ResponseMessage", targetNamespace = "")
+	String deleteUser(@WebParam(name = "id", targetNamespace = "") Integer id);
+
+	@WebMethod(operationName = "GetUser", action = "http://localhost:8080/EsercizioKebab/GetUser")
+	@WebResult(name = "User", targetNamespace = "")
+	User getUser(@WebParam(name = "id", targetNamespace = "") Integer id);
+
+	@WebMethod(operationName = "GetAllUsers", action = "http://localhost:8080/EsercizioKebab/GetAllUsers")
+	@WebResult(name = "Users", targetNamespace = "")
+	List<User> getAllUsers();
+
+}

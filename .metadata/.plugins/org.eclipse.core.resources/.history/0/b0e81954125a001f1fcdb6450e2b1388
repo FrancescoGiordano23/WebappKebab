@@ -1,0 +1,44 @@
+package com.advancia.Soap;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+
+import com.advancia.Soap.User.*;
+import com.advancia.Utility.UserServices;
+
+@WebService
+public class UserSoap implements UserWS{
+
+	@Override
+	@WebMethod
+	@WebResult(name="ResponseMessage")
+	public String addUser(@WebParam(name="username") String username, @WebParam(name="password") String password) {
+		UserServices.c
+	}
+
+	@Override
+	public String updateUser(String in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteUser(String in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUser(String in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getAllUsers(String in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.advancia.DAO;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.advancia.Modal.PrimaryIngredient;
+
+public class PrimaryIngredientDAO {
+
+	public static List<PrimaryIngredient> getAllPrimaryIngredients(EntityManager manager) {
+
+		List<PrimaryIngredient> listToReturn = null;
+
+		Query query = manager.createNamedQuery("GetAllPrimaryIngredients", PrimaryIngredient.class);
+		listToReturn = query.getResultList();
+
+		return listToReturn;
+	}
+}

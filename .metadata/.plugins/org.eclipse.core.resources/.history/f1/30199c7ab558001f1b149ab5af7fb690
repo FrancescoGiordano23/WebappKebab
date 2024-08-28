@@ -1,0 +1,144 @@
+package com.advancia.Utility;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import com.advancia.DAO.PrimaryIngredientDAO;
+import com.advancia.DAO.SecondaryIngredientDAO;
+import com.advancia.Modal.PrimaryIngredient;
+import com.advancia.Modal.SecondaryIngredient;
+
+public class SecondaryIngredientServices {
+
+	public static List<SecondaryIngredient> getAllSecondaryIngredients() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			return SecondaryIngredientDAO.getAllSecondaryIngredients(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+	
+	public static SecondaryIngredient getSecondaryIngredientById(int selectedSecondaryId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+			SecondaryIngredientDAO.getSecondaryIngredientById(manager, selectedSecondaryId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+		return null;
+	}
+
+	public static void deleteAllSecondaryIngredient() {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = JpaUtil.GetEntityTransaction(manager);
+			transaction.begin();
+
+			SecondaryIngredientDAO.deleteAllSecondaryIngredients(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (transaction != null)
+				transaction.commit();
+			if (manager != null)
+				manager.close();
+		}
+	}
+	
+	public static void deleteSecondaryIngredientById(int selectedSecondaryId) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = manager.getTransaction();
+			transaction.begin();
+			SecondaryIngredientDAO.deleteSecondaryIngredientById(manager, selectedSecondaryId);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+	}
+
+	public static void updateSecondaryIngredientById(int selectedSecondaryId, String newName, int newPrice) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = manager.getTransaction();
+			transaction.begin();
+			SecondaryIngredient secondaryIngredientToUpdate = SecondaryIngredientDAO.getSecondaryIngredientById(manager,
+					selectedSecondaryId);
+			if (secondaryIngredientToUpdate != null) {
+				secondaryIngredientToUpdate.setName(newName);
+				secondaryIngredientToUpdate.setPrice(newPrice);
+				transaction.commit();
+			} else {
+				transaction.rollback();
+			}
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+	}
+
+	
+	public static void createSecondaryIngredient(String name, int price) {
+		EntityManager manager = null;
+		EntityTransaction transaction = null;
+		try {
+			manager = JpaUtil.GetEntityManager();
+			transaction = manager.getTransaction();
+			transaction.begin();
+			PrimaryIngredient newPrimaryIngredient = new PrimaryIngredient();
+			newPrimaryIngredient.setName(name);
+			newPrimaryIngredient.setPrice(price);
+			PrimaryIngredientDAO.createNewPrimaryIngredient(manager, newPrimaryIngredient);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (manager != null)
+				manager.close();
+		}
+	}
+	
+	
+}

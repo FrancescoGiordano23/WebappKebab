@@ -1,6 +1,0 @@
-package com.advancia.soap;
-
-@WebService(serviceName = "userSoap")
-public class UserSoap {
-
-}

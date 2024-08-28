@@ -1,0 +1,32 @@
+package com.advancia.DAO;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.advancia.Modal.Container;
+
+public class ContainerDAO {
+
+	public static List<Container> getAllContainers(EntityManager manager) {
+
+		List<Container> listToReturn = null;
+
+		Query query = manager.createNamedQuery("GetAllContainers", Container.class);
+		listToReturn = query.getResultList();
+
+		return listToReturn;
+	}
+	
+	public static ContainergGetContainerById(EntityManager manager, int selectedContainerId) {
+
+		Container containerToReturn = null;
+
+		Query query = manager.createNamedQuery("GetContainerById", Container.class);
+		query.setParameter("id", selectedContainerId);
+		containerToReturn = (Container) query.getSingleResult();
+
+		return containerToReturn;
+	}
+}
