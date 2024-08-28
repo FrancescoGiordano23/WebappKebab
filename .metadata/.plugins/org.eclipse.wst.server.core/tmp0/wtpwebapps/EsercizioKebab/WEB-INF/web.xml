@@ -41,10 +41,16 @@
 
 	<!-- SOAP -->
 	<servlet>
-		<servlet-name>UserSoapService</servlet-name>
+		<servlet-name>UserSoap</servlet-name>
 		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+
+	<!--SOAP -->
+	<servlet-mapping>
+		<servlet-name>UserSoap</servlet-name>
+		<url-pattern>/UserSoap</url-pattern>
+	</servlet-mapping>
 
 
 
@@ -69,12 +75,6 @@
 		<url-pattern>/DeleteAllKebabServlet</url-pattern>
 	</servlet-mapping>
 
-	
-	<!-- SOAP MAPPING -->
-	<servlet-mapping>
-		<servlet-name>UserSoapService</servlet-name>
-		<url-pattern>/soap/UserSoap</url-pattern>
-	</servlet-mapping>
 
 	<session-config>
 		<session-timeout>5</session-timeout>

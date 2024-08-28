@@ -4,3 +4,16 @@
 127.0.0.1 - - [28/Aug/2024:15:43:42 +0200] "GET / HTTP/1.1" 404 751
 0:0:0:0:0:0:0:1 - - [28/Aug/2024:15:43:42 +0200] "GET /EsercizioKebab/ HTTP/1.1" 200 1845
 0:0:0:0:0:0:0:1 - - [28/Aug/2024:15:43:50 +0200] "POST /EsercizioKebab/LoginServlet HTTP/1.1" 200 16501
+127.0.0.1 - - [28/Aug/2024:15:51:39 +0200] "GET / HTTP/1.1" 404 751
+127.0.0.1 - - [28/Aug/2024:15:52:57 +0200] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [28/Aug/2024:15:53:04 +0200] "GET /EsercizioKebab HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [28/Aug/2024:15:53:04 +0200] "GET /EsercizioKebab/ HTTP/1.1" 200 1845
+0:0:0:0:0:0:0:1 - - [28/Aug/2024:15:53:11 +0200] "POST /EsercizioKebab/LoginServlet HTTP/1.1" 200 16501
+127.0.0.1 - - [28/Aug/2024:16:05:38 +0200] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [28/Aug/2024:16:05:38 +0200] "GET /EsercizioKebab/UserSoap/UserSoap HTTP/1.1" 404 791
+0:0:0:0:0:0:0:1 - - [28/Aug/2024:16:05:41 +0200] "GET /EsercizioKebab/UserSoap HTTP/1.1" 200 775
+127.0.0.1 - - [28/Aug/2024:16:05:59 +0200] "GET /EsercizioKebab/UserSoap?wsdl HTTP/1.1" 200 4714
+127.0.0.1 - - [28/Aug/2024:16:05:59 +0200] "GET /EsercizioKebab/UserSoap?xsd=1 HTTP/1.1" 200 2086
+127.0.0.1 - - [28/Aug/2024:16:06:09 +0200] "POST /EsercizioKebab/UserSoap HTTP/1.1" 200 286
+127.0.0.1 - - [28/Aug/2024:16:07:16 +0200] "POST /EsercizioKebab/UserSoap HTTP/1.1" 200 203
+127.0.0.1 - - [28/Aug/2024:16:07:36 +0200] "POST /EsercizioKebab/UserSoap HTTP/1.1" 200 339
