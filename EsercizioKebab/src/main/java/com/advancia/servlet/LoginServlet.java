@@ -8,6 +8,12 @@ import javax.servlet.http.*;
 
 
 import com.advancia.Utility.*;
+import com.advancia.Entity.ContainerEntity;
+import com.advancia.Entity.KebabEntity;
+import com.advancia.Entity.PrimaryIngredientEntity;
+import com.advancia.Entity.SauceIngredientEntity;
+import com.advancia.Entity.SecondaryIngredientEntity;
+import com.advancia.Entity.UserEntity;
 import com.advancia.Modal.*;
 
 /**
@@ -31,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String password = request.getParameter("password");
 		String username = request.getParameter("username");
-		User user=UserServices.CheckAndGetUserByCredentials(username, password);
+		UserEntity user=UserServices.CheckAndGetUserByCredentials(username, password);
 		if (user!=null) {
 			request.getSession().setAttribute("User", user);
 			createEnviroment(request, user);
@@ -42,14 +48,14 @@ public class LoginServlet extends HttpServlet {
 		}
 
 	}
-private void createEnviroment(HttpServletRequest request,User user) {
+private void createEnviroment(HttpServletRequest request,UserEntity user) {
 		
 		
-		List<Container> containers = ContainerServices.getAllContainers();
-		List<PrimaryIngredient> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
-		List<SecondaryIngredient> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
-		List<SauceIngredient> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
-		List<Kebab> kebabs = KebabServices.GetAllUserKebabs(user);
+		List<ContainerEntity> containers = ContainerServices.getAllContainers();
+		List<PrimaryIngredientEntity> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
+		List<SecondaryIngredientEntity> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
+		List<SauceIngredientEntity> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
+		List<KebabEntity> kebabs = KebabServices.GetAllUserKebabs(user);
 		
 		if(user==null) 
 			request.setAttribute("invalidUser", true);

@@ -4,13 +4,16 @@ import java.util.List;
 
 import com.advancia.DAO.*;
 import com.advancia.Modal.*;
+import com.advancia.Entity.KebabEntity;
+import com.advancia.Entity.UserEntity;
+
 import javax.persistence.*;;
 
 public class KebabServices {
 
 
 	public static void CreateNewKebab(String name, int containerId, int primaryId, List<Integer> sauceIds,
-			List<Integer> secondaryIds, User user, int price) {
+			List<Integer> secondaryIds, UserEntity user, int price) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -19,7 +22,7 @@ public class KebabServices {
 
 			transaction.begin();
 
-			Kebab kebabToAdd = new Kebab();
+			KebabEntity kebabToAdd = new KebabEntity();
 			kebabToAdd.setUser(user);
 			kebabToAdd.setName(name);
 			kebabToAdd.setContainer(ContainerDAO.getContainerById(manager, containerId));
@@ -44,7 +47,7 @@ public class KebabServices {
 		}
 	}
 
-	public static List<Kebab> GetAllUserKebabs(User user) {
+	public static List<KebabEntity> GetAllUserKebabs(UserEntity user) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -64,7 +67,7 @@ public class KebabServices {
 		return null;
 	}
 
-	public static void DeleteAllUserKebab(User user) {
+	public static void DeleteAllUserKebab(UserEntity user) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -84,7 +87,7 @@ public class KebabServices {
 
 	}
 
-	public static Kebab GetKebabOfUserByName(User user,String kebabName) {
+	public static KebabEntity GetKebabOfUserByName(UserEntity user,String kebabName) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -92,8 +95,8 @@ public class KebabServices {
 			transaction = JpaUtil.GetEntityTransaction(manager);
 			transaction.begin();
 
-			List<Kebab> userKebabs = KebabDAO.GetAllKebabsOfUser(manager, user);
-			for(Kebab k: userKebabs) {
+			List<KebabEntity> userKebabs = KebabDAO.GetAllKebabsOfUser(manager, user);
+			for(KebabEntity k: userKebabs) {
 				if(k.getName().equals(kebabName))
 					return k;
 				

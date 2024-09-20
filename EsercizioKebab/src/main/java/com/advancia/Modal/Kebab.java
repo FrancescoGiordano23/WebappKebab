@@ -5,19 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import com.advancia.Entity.ContainerEntity;
+import com.advancia.Entity.PrimaryIngredientEntity;
+import com.advancia.Entity.SauceIngredientEntity;
+import com.advancia.Entity.SecondaryIngredientEntity;
+import com.advancia.Entity.UserEntity;
 
-@Entity
-@Table(name="kebab_table")
-@NamedQueries({
-	@NamedQuery(name = "GetAllKebabsOfUser", query = "SELECT k from Kebab k WHERE k.user=:user")
-	
-})
 public class Kebab {
+
 	
-	@Id	
-	@Column(name="kebab_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;	
 	public int getId() {
 		return id;
@@ -26,7 +22,7 @@ public class Kebab {
 		id=value;
 	}
 	
-	@Column(name="kebab_name")
+	
 	private String name;	
 	public String getName() {
 		return name;
@@ -35,7 +31,7 @@ public class Kebab {
 		name=value;
 	}
 	
-	@Column(name="kebab_price")	
+	
 	private int price;
 	public int getPrice() {
 		return price;
@@ -44,65 +40,54 @@ public class Kebab {
 		price=value;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="primary_id")
-	private PrimaryIngredient primaryIngredient;
-	public PrimaryIngredient getPrimaryIngredient() {
+	
+	private PrimaryIngredientEntity primaryIngredient;
+	public PrimaryIngredientEntity getPrimaryIngredient() {
 		return primaryIngredient;
 	}	
-	public void setPrimaryIngredient(PrimaryIngredient value) {
+	public void setPrimaryIngredient(PrimaryIngredientEntity value) {
 		primaryIngredient=value;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="container_id")
-	private Container container;
-	public Container getContainer() {
+	
+	private ContainerEntity container;
+	public ContainerEntity getContainer() {
 		return container;
 	}	
-	public void setContainer(Container value) {
+	public void setContainer(ContainerEntity value) {
 		container=value;
 	}
 	
-	@ManyToMany(targetEntity = SecondaryIngredient.class, fetch=FetchType.EAGER)
-	@JoinTable(name = "kebab_secondary_table", 
-				joinColumns = { @JoinColumn(name = "kebab_id") }, 
-				inverseJoinColumns = { @JoinColumn(name = "secondary_id") })
-	private Set<SecondaryIngredient> secondaryIngredientsSet = new HashSet<>();
-	public Set<SecondaryIngredient> getSecondaryIngredients(){
+	
+	private Set<SecondaryIngredientEntity> secondaryIngredientsSet = new HashSet<>();
+	public Set<SecondaryIngredientEntity> getSecondaryIngredients(){
 		return secondaryIngredientsSet;
 	}
-	public void addSecondaryIngredientToSet(SecondaryIngredient value) {
+	public void addSecondaryIngredientToSet(SecondaryIngredientEntity value) {
 		secondaryIngredientsSet.add(value);
 	}
-	public void removeSecondaryIngredientFromList(SecondaryIngredient value) {
+	public void removeSecondaryIngredientFromList(SecondaryIngredientEntity value) {
 		secondaryIngredientsSet.remove(value);
 	}
 
-	@ManyToMany(targetEntity = SauceIngredient.class,fetch=FetchType.EAGER)
-	@JoinTable(name = "kebab_sauce_table", 
-				joinColumns = { @JoinColumn(name = "kebab_id") }, 
-				inverseJoinColumns = { @JoinColumn(name = "sauce_id") })
-	private List<SauceIngredient> sauceIngredientsList = new ArrayList<SauceIngredient>();
-	public List<SauceIngredient> getSauceIngredients(){
+	
+	private List<SauceIngredientEntity> sauceIngredientsList = new ArrayList<SauceIngredientEntity>();
+	public List<SauceIngredientEntity> getSauceIngredients(){
 		return sauceIngredientsList;
 	}
-	public void addSauceIngredientToList(SauceIngredient value) {
+	public void addSauceIngredientToList(SauceIngredientEntity value) {
 		sauceIngredientsList.add(value);
 	}
-	public void removeSauceIngredientFromList(SauceIngredient value) {
+	public void removeSauceIngredientFromList(SauceIngredientEntity value) {
 		sauceIngredientsList.remove(value);
 	}
 
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User user;
 	
-	public User getUser() {
+	private UserEntity user;	
+	public UserEntity getUser() {
 		return user;
 	}
-	public void setUser(User value) {
+	public void setUser(UserEntity value) {
 		user=value;
 	}
-	
 }

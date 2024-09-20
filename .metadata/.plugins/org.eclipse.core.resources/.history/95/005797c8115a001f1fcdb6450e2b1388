@@ -1,9 +1,0 @@
-package com.advancia.Soap;
-import javax.jws.WebService;
-
-import com.advancia.Soap.User.*;
-
-@WebService
-public class UserSoap implements UserWS{
-
-}

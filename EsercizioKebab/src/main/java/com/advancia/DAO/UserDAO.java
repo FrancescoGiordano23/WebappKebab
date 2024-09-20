@@ -1,24 +1,23 @@
 package com.advancia.DAO;
 
-import com.advancia.Modal.User;
-
 import java.util.List;
 
 import javax.persistence.*;
 import com.advancia.Utility.JpaUtil;
+import com.advancia.Entity.UserEntity;
 
 public class UserDAO {
 
-	public static User FindUserInDatabase(String username, String password) {
+	public static UserEntity FindUserInDatabase(String username, String password) {
 		EntityManager entityManager = null;
-		User userToReturn = null;
+		UserEntity userToReturn = null;
 
 		try {
 			entityManager = JpaUtil.getEntityManagerFactory().createEntityManager();			
-	        Query query=entityManager.createNamedQuery("FindUserByUsernamePassword", User.class);       
+	        Query query=entityManager.createNamedQuery("FindUserByUsernamePassword", UserEntity.class);       
 	        query.setParameter("username", username);
 	        query.setParameter("password", password);
-	        userToReturn= (User) query.getSingleResult();
+	        userToReturn= (UserEntity) query.getSingleResult();
 			
 
 		} catch (Exception e) {
@@ -33,22 +32,22 @@ public class UserDAO {
 		return userToReturn;
 	}
 
-	public static User getUserById(EntityManager manager, int selectedUserId) {
+	public static UserEntity getUserById(EntityManager manager, int selectedUserId) {
 
-		User userToReturn = null;
+		UserEntity userToReturn = null;
 
-		Query query = manager.createNamedQuery("GetUserById", User.class);
+		Query query = manager.createNamedQuery("GetUserById", UserEntity.class);
 		query.setParameter("id", selectedUserId);
-		userToReturn = (User) query.getSingleResult();
+		userToReturn = (UserEntity) query.getSingleResult();
 
 		return userToReturn;
 	}
 
-	public static List<User> getAllUsers(EntityManager manager) {
+	public static List<UserEntity> getAllUsers(EntityManager manager) {
 
-		List<User> listToReturn = null;
+		List<UserEntity> listToReturn = null;
 
-		Query query = manager.createNamedQuery("GetAllUsers", User.class);
+		Query query = manager.createNamedQuery("GetAllUsers", UserEntity.class);
 		listToReturn = query.getResultList();
 
 		return listToReturn;
@@ -56,7 +55,7 @@ public class UserDAO {
 	
 	public static boolean deleteUserById(EntityManager manager, int selectedUserId) {
 		try {
-			User userToReturn = null;
+			UserEntity userToReturn = null;
 			userToReturn = getUserById(manager, selectedUserId);
 			manager.remove(userToReturn);
 			return true;
@@ -67,7 +66,7 @@ public class UserDAO {
 
 	}
 
-	public static boolean createNewUser(EntityManager manager, User newUser) {
+	public static boolean createNewUser(EntityManager manager, UserEntity newUser) {
 		try {
 			manager.persist(newUser);
 			return true;

@@ -6,11 +6,11 @@ import javax.persistence.EntityTransaction;
 
 import com.advancia.DAO.KebabDAO;
 import com.advancia.DAO.PrimaryIngredientDAO;
-import com.advancia.Modal.PrimaryIngredient;
+import com.advancia.Entity.PrimaryIngredientEntity;
 
 public class PrimaryIngredientServices {
 
-	public static List<PrimaryIngredient> getAllPrimaryIngredients() {
+	public static List<PrimaryIngredientEntity> getAllPrimaryIngredients() {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -22,7 +22,7 @@ public class PrimaryIngredientServices {
 		}
 	}
 
-	public static PrimaryIngredient getPrimaryIngredientById(int selectedPrimaryId) {
+	public static PrimaryIngredientEntity getPrimaryIngredientById(int selectedPrimaryId) {
 		EntityManager manager = null;
 		try {
 			manager = JpaUtil.GetEntityManager();
@@ -60,7 +60,7 @@ public class PrimaryIngredientServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			PrimaryIngredient primaryIngredientToUpdate = PrimaryIngredientDAO.getPrimaryIngredientById(manager,
+			PrimaryIngredientEntity primaryIngredientToUpdate = PrimaryIngredientDAO.getPrimaryIngredientById(manager,
 					selectedPrimaryId);
 			if (primaryIngredientToUpdate != null) {
 				primaryIngredientToUpdate.setName(newName);
@@ -87,7 +87,7 @@ public class PrimaryIngredientServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			PrimaryIngredient newPrimaryIngredient = new PrimaryIngredient();
+			PrimaryIngredientEntity newPrimaryIngredient = new PrimaryIngredientEntity();
 			newPrimaryIngredient.setName(name);
 			newPrimaryIngredient.setPrice(price);
 			PrimaryIngredientDAO.createNewPrimaryIngredient(manager, newPrimaryIngredient);

@@ -1,21 +1,7 @@
 package com.advancia.Modal;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name="secondary_ingredient_table")
-
-@NamedQueries({
-	
-	@NamedQuery(name = "GetAllSecondaryIngredients", query = "SELECT s from SecondaryIngredient s"),
-	@NamedQuery(name = "GetSecondaryIngredientById", query = "SELECT s FROM SecondaryIngredient s WHERE s.id= :id") })
-
-
 public class SecondaryIngredient {
 	
-	@Id	
-	@Column(name="secondary_ingredient_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;	
 	public int getId() {
 		return id;
@@ -23,8 +9,7 @@ public class SecondaryIngredient {
 	public void setId(int value) {
 		id=value;
 	}
-	
-	@Column(name="secondary_ingredient_name")
+		
 	private String name;	
 	public String getName() {
 		return name;
@@ -32,8 +17,7 @@ public class SecondaryIngredient {
 	public void setName(String value) {
 		name=value;
 	}
-	
-	@Column(name="secondary_ingredient_price")	
+		
 	private int price;
 	public int getPrice() {
 		return price;
@@ -41,5 +25,4 @@ public class SecondaryIngredient {
 	public void setPrice(int value) {
 		price=value;
 	}
-
 }

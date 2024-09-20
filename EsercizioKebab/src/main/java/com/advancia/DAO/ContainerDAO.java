@@ -5,35 +5,34 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.advancia.Modal.Container;
-import com.advancia.Modal.Container;
+import com.advancia.Entity.ContainerEntity;
 
 public class ContainerDAO {
 
-	public static List<Container> getAllContainers(EntityManager manager) {
+	public static List<ContainerEntity> getAllContainers(EntityManager manager) {
 
-		List<Container> listToReturn = null;
+		List<ContainerEntity> listToReturn = null;
 
-		Query query = manager.createNamedQuery("GetAllContainers", Container.class);
+		Query query = manager.createNamedQuery("GetAllContainers", ContainerEntity.class);
 		listToReturn = query.getResultList();
 
 		return listToReturn;
 	}
 
-	public static Container getContainerById(EntityManager manager, int selectedContainerId) {
+	public static ContainerEntity getContainerById(EntityManager manager, int selectedContainerId) {
 
-		Container containerToReturn = null;
+		ContainerEntity containerToReturn = null;
 
-		Query query = manager.createNamedQuery("GetContainerById", Container.class);
+		Query query = manager.createNamedQuery("GetContainerById", ContainerEntity.class);
 		query.setParameter("id", selectedContainerId);
-		containerToReturn = (Container) query.getSingleResult();
+		containerToReturn = (ContainerEntity) query.getSingleResult();
 
 		return containerToReturn;
 	}
 
 	public static boolean deleteContainerById(EntityManager manager, int selectedSecondaryId) {
 		try {
-			Container secondaryToReturn = null;
+			ContainerEntity secondaryToReturn = null;
 			secondaryToReturn = getContainerById(manager, selectedSecondaryId);
 			manager.remove(secondaryToReturn);
 			return true;
@@ -46,8 +45,8 @@ public class ContainerDAO {
 
 	public static boolean deleteAllContainers(EntityManager manager) {
 		try {
-			Query query = manager.createNamedQuery("GetAllContainers", Container.class);
-			for (Container s : (List<Container>) query.getResultList())
+			Query query = manager.createNamedQuery("GetAllContainers", ContainerEntity.class);
+			for (ContainerEntity s : (List<ContainerEntity>) query.getResultList())
 				manager.remove(s);
 
 			return true;
@@ -58,7 +57,7 @@ public class ContainerDAO {
 
 	}
 
-	public static boolean createNewContainer(EntityManager manager, Container newContainer) {
+	public static boolean createNewContainer(EntityManager manager, ContainerEntity newContainer) {
 		try {
 			manager.persist(newContainer);
 			return true;

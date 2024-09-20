@@ -1,7 +1,13 @@
 <%-- <%@page import="org.hibernate.engine.spi.PrimeAmongSecondarySupertypes"%> --%>
+<%@page import="com.advancia.Entity.KebabEntity"%>
+<%@page import="com.advancia.Entity.SauceIngredientEntity"%>
+<%@page import="com.advancia.Entity.SecondaryIngredientEntity"%>
+<%@page import="com.advancia.Entity.PrimaryIngredientEntity"%>
+<%@page import="com.advancia.Entity.UserEntity"%>
+<%@page import="com.advancia.Entity.ContainerEntity"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.List"
-	import="com.advancia.Modal.*"%>
+	import="com.advancia.Modal.*" import="com.advancia.Entity.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,17 +120,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 
 	<%
-	User user = (User)request.getSession().getAttribute("User");
-	if(user==null){
+	UserEntity user = (UserEntity) request.getSession().getAttribute("User");
+	if (user == null) {
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 	boolean invalidKebab = request.getAttribute("invalidKebab") != null;
 	boolean invalidUser = request.getAttribute("invalidUser") != null;
-	List<Container> containerList = (List<Container>) request.getAttribute("Containers");
-	List<PrimaryIngredient> primaryList = (List<PrimaryIngredient>) request.getAttribute("PrimaryIngredients");
-	List<SecondaryIngredient> secondaryList = (List<SecondaryIngredient>) request.getAttribute("SecondaryIngredients");
-	List<SauceIngredient> sauceList = (List<SauceIngredient>) request.getAttribute("Sauces");
-	List<Kebab> kebabList = (List<Kebab>) request.getAttribute("Kebabs");
+	List<ContainerEntity> containerList = (List<ContainerEntity>) request.getAttribute("Containers");
+	List<PrimaryIngredientEntity> primaryList = (List<PrimaryIngredientEntity>) request.getAttribute("PrimaryIngredients");
+	List<SecondaryIngredientEntity> secondaryList = (List<SecondaryIngredientEntity>) request
+			.getAttribute("SecondaryIngredients");
+	List<SauceIngredientEntity> sauceList = (List<SauceIngredientEntity>) request.getAttribute("Sauces");
+	List<KebabEntity> kebabList = (List<KebabEntity>) request.getAttribute("Kebabs");
 	%>
 
 	<div class="container">
@@ -142,9 +149,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			<!-- RIGHT -->
 			<div class="col-10 col-lg-9">
 				<div class="d-flex align-items-center my-2">
-				<p class="me-3 mb-0">Visualizza kebab creati</p>
-				<p class="text-danger mb-0"><%=invalidUser ? "Eseguire nuovamente il login, utente scollegato" : ""%></p>
-			</div>
+					<p class="me-3 mb-0">Visualizza kebab creati</p>
+					<p class="text-danger mb-0"><%=invalidUser ? "Eseguire nuovamente il login, utente scollegato" : ""%></p>
+				</div>
 				<div class="border border-dark my-4">
 					<div class="container">
 						<div class="row align-items-start">
@@ -159,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							style="height: 150px">
 							<%
 							if (kebabList != null && kebabList.size() != 0)
-								for (Kebab k : kebabList) {
+								for (KebabEntity k : kebabList) {
 							%>
 							<div class="row align-items-start">
 								<div class="col border" style="height: 51px"><%=k.getName()%></div>
@@ -170,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
 									<div class="overflow-y-auto overflow-x-hidden"
 										style="height: 50px">
 										<%
-										for (SecondaryIngredient s : k.getSecondaryIngredients()) {
+										for (SecondaryIngredientEntity s : k.getSecondaryIngredients()) {
 										%>
 										<div class="container">
 											<div class="row"><%=s.getName()%></div>
@@ -186,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 									<div class="overflow-y-auto overflow-x-hidden"
 										style="height: 50px">
 										<%
-										for (SauceIngredient s : k.getSauceIngredients()) {
+										for (SauceIngredientEntity s : k.getSauceIngredients()) {
 										%>
 										<div class="container">
 											<div class="row"><%=s.getName()%></div>
@@ -217,7 +224,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			</div>
 			<div class="col">
 				<div class="border border-dark my-4">
-					<form action="CreateKebabServlet" id="CreateKebabForm" method="post">
+					<form action="CreateKebabServlet" id="CreateKebabForm"
+						method="post">
 						<div class="container">
 							<div class="row align-items-start">
 								<!-- NOME KEBAB INPUT -->
@@ -234,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
 										<ul class="dropdown-menu">
 											<%
 											if (containerList != null && containerList.size() != 0)
-												for (Container c : containerList) {
+												for (ContainerEntity c : containerList) {
 											%>
 											<li><a class="dropdown-item"
 												id="container<%=c.getId()%>" href="#"
@@ -255,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
 										<ul class="dropdown-menu">
 											<%
 											if (primaryList != null && primaryList.size() != 0)
-												for (PrimaryIngredient p : primaryList) {
+												for (PrimaryIngredientEntity p : primaryList) {
 											%>
 											<li><a class="dropdown-item" id="primary<%=p.getId()%>"
 												href="#" onclick="setPrimaryValue('<%=p.getId()%>')"><%=p.getName()%></a></li>
@@ -275,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
 										<ul class="dropdown-menu">
 											<%
 											if (secondaryList != null && secondaryList.size() != 0)
-												for (SecondaryIngredient s : secondaryList) {
+												for (SecondaryIngredientEntity s : secondaryList) {
 											%>
 											<li>
 												<div class="dropdown-item">
@@ -303,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
 										<ul class="dropdown-menu">
 											<%
 											if (sauceList != null && sauceList.size() != 0)
-												for (SauceIngredient s : sauceList) {
+												for (SauceIngredientEntity s : sauceList) {
 											%>
 											<li>
 												<div class="dropdown-item">

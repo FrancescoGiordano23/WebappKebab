@@ -7,6 +7,12 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.advancia.Utility.*;
+import com.advancia.Entity.ContainerEntity;
+import com.advancia.Entity.KebabEntity;
+import com.advancia.Entity.PrimaryIngredientEntity;
+import com.advancia.Entity.SauceIngredientEntity;
+import com.advancia.Entity.SecondaryIngredientEntity;
+import com.advancia.Entity.UserEntity;
 import com.advancia.Modal.*;
 
 
@@ -24,12 +30,12 @@ public class ShowKebabServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		User user= (User) request.getSession().getAttribute("User");
-		List<Container> containers = ContainerServices.getAllContainers();
-		List<PrimaryIngredient> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
-		List<SecondaryIngredient> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
-		List<SauceIngredient> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
-		List<Kebab> kebabs = KebabServices.GetAllUserKebabs(user);
+		UserEntity user= (UserEntity) request.getSession().getAttribute("User");
+		List<ContainerEntity> containers = ContainerServices.getAllContainers();
+		List<PrimaryIngredientEntity> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
+		List<SecondaryIngredientEntity> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
+		List<SauceIngredientEntity> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
+		List<KebabEntity> kebabs = KebabServices.GetAllUserKebabs(user);
 		
 		if(user==null) 
 			request.setAttribute("invalidUser", true);

@@ -8,6 +8,12 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.advancia.Utility.*;
+import com.advancia.Entity.ContainerEntity;
+import com.advancia.Entity.KebabEntity;
+import com.advancia.Entity.PrimaryIngredientEntity;
+import com.advancia.Entity.SauceIngredientEntity;
+import com.advancia.Entity.SecondaryIngredientEntity;
+import com.advancia.Entity.UserEntity;
 import com.advancia.DAO.SauceIngredientDAO;
 import com.advancia.Modal.*;
 
@@ -26,7 +32,7 @@ public class CreateKebabServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// prendo tutti i dati di kebab da creare
-		User user = (User) request.getSession().getAttribute("User");
+		UserEntity user = (UserEntity) request.getSession().getAttribute("User");
 		String selectedName = (String) request.getParameter("selectedName");
 		int selectedContainerId = Integer.parseInt(request.getParameter("selectedContainerId"));
 		int selectedPrimaryId = Integer.parseInt(request.getParameter("selectedPrimaryId"));
@@ -68,14 +74,14 @@ public class CreateKebabServlet extends HttpServlet {
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 	}
 	
-	private void createEnviroment(HttpServletRequest request,HttpServletResponse response,User user) {
+	private void createEnviroment(HttpServletRequest request,HttpServletResponse response,UserEntity user) {
 		
 		
-		List<Container> containers = ContainerServices.getAllContainers();
-		List<PrimaryIngredient> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
-		List<SecondaryIngredient> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
-		List<SauceIngredient> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
-		List<Kebab> kebabs = KebabServices.GetAllUserKebabs(user);
+		List<ContainerEntity> containers = ContainerServices.getAllContainers();
+		List<PrimaryIngredientEntity> primaryIgredients = PrimaryIngredientServices.getAllPrimaryIngredients();
+		List<SecondaryIngredientEntity> secondaryIgredients = SecondaryIngredientServices.getAllSecondaryIngredients();
+		List<SauceIngredientEntity> sauceIgredients = SauceIngredientServices.getAllSauceIngredients();
+		List<KebabEntity> kebabs = KebabServices.GetAllUserKebabs(user);
 		
 
 		if(user==null) 

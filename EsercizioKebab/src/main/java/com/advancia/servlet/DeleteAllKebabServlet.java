@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.advancia.Utility.*;
-import com.advancia.Modal.User;
+import com.advancia.Entity.UserEntity;
 
 
 public class DeleteAllKebabServlet extends HttpServlet {
@@ -23,7 +23,7 @@ public class DeleteAllKebabServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = (User) request.getSession().getAttribute("User");
+		UserEntity user = (UserEntity) request.getSession().getAttribute("User");
 		KebabServices.DeleteAllUserKebab(user);
 		request.getRequestDispatcher("ShowKebabServlet").forward(request, response);
 	}

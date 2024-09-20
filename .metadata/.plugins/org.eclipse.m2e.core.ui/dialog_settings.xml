@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\franc\Desktop\Lavoro\WebappKebab\SeleniumKebabProject"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -25,13 +26,10 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="com.advancia.EsercizioKebab"/>
 		</list>
 		<list key="groupId">
-			<item value="com.advancia"/>
 		</list>
 		<list key="artifactId">
-			<item value="EsercizioKebab"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -47,10 +45,12 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.advancia"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="SeleniumEsercizioKebab"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

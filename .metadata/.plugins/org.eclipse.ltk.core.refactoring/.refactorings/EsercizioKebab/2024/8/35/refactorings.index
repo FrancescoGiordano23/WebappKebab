@@ -1,1 +1,9 @@
 1724852489834	Delete element
+1724858767510	Move compilation units
+1724858801257	Rename type 'Container'
+1724858809278	Rename type 'Kebab'
+1724858816010	Rename type 'PrimaryIngredient'
+1724858827043	Rename type 'SauceIngredient'
+1724858833088	Rename type 'SecondaryIngredient'
+1724858839372	Rename type 'User'
+1724859554006	Rename type 'userDTO'

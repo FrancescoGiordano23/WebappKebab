@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import com.advancia.DAO.ContainerDAO;
-import com.advancia.Modal.Container;
+import com.advancia.Entity.ContainerEntity;
 
 public class ContainerServices {
 
-	public static List<Container> getAllContainers() {
+	public static List<ContainerEntity> getAllContainers() {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -29,7 +29,7 @@ public class ContainerServices {
 		return null;
 	}
 
-	public static Container getContainerById(int selectedContainerId) {
+	public static ContainerEntity getContainerById(int selectedContainerId) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -100,7 +100,7 @@ public class ContainerServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			Container ContainerToUpdate = ContainerDAO.getContainerById(manager,
+			ContainerEntity ContainerToUpdate = ContainerDAO.getContainerById(manager,
 					selectedContainerId);
 			if (ContainerToUpdate != null) {
 				ContainerToUpdate.setName(newName);
@@ -131,7 +131,7 @@ public class ContainerServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			Container newContainer = new Container();
+			ContainerEntity newContainer = new ContainerEntity();
 			newContainer.setName(name);
 			newContainer.setPrice(price);
 			createSuccessfull= ContainerDAO.createNewContainer(manager, newContainer);

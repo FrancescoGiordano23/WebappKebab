@@ -6,19 +6,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import com.advancia.DAO.UserDAO;
+import com.advancia.Modal.User;
+import com.advancia.Entity.UserEntity;
 import com.advancia.DAO.UserDAO;
-import com.advancia.Modal.User;
-import com.advancia.Modal.User;
 
 public class UserServices {
 
-	public static User CheckAndGetUserByCredentials(String username, String password) {
+	public static UserEntity CheckAndGetUserByCredentials(String username, String password) {
 
 		return UserDAO.FindUserInDatabase(username, password);
 
 	}
 
-	public static List<User> getAllUsers() {
+	public static List<UserEntity> getAllUsers() {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -37,7 +37,7 @@ public class UserServices {
 		return null;
 	}
 
-	public static User getUserById(int selectedUserId) {
+	public static UserEntity getUserById(int selectedUserId) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -86,7 +86,7 @@ public class UserServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			User UserToUpdate = UserDAO.getUserById(manager, selectedUserId);
+			UserEntity UserToUpdate = UserDAO.getUserById(manager, selectedUserId);
 			if (UserToUpdate != null) {
 				UserToUpdate.setUsername(newUsername);
 				UserToUpdate.setPassword(newPassword);
@@ -116,7 +116,7 @@ public class UserServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			User newUser = new User();
+			UserEntity newUser = new UserEntity();
 			newUser.setUsername(newUsername);
 			newUser.setPassword(newPassword);
 			createSuccessfull = UserDAO.createNewUser(manager, newUser);

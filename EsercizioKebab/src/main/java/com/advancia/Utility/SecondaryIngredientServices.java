@@ -7,12 +7,12 @@ import javax.persistence.EntityTransaction;
 
 import com.advancia.DAO.PrimaryIngredientDAO;
 import com.advancia.DAO.SecondaryIngredientDAO;
-import com.advancia.Modal.PrimaryIngredient;
-import com.advancia.Modal.SecondaryIngredient;
+import com.advancia.Entity.PrimaryIngredientEntity;
+import com.advancia.Entity.SecondaryIngredientEntity;
 
 public class SecondaryIngredientServices {
 
-	public static List<SecondaryIngredient> getAllSecondaryIngredients() {
+	public static List<SecondaryIngredientEntity> getAllSecondaryIngredients() {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -31,7 +31,7 @@ public class SecondaryIngredientServices {
 		return null;
 	}
 	
-	public static SecondaryIngredient getSecondaryIngredientById(int selectedSecondaryId) {
+	public static SecondaryIngredientEntity getSecondaryIngredientById(int selectedSecondaryId) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -96,7 +96,7 @@ public class SecondaryIngredientServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			SecondaryIngredient secondaryIngredientToUpdate = SecondaryIngredientDAO.getSecondaryIngredientById(manager,
+			SecondaryIngredientEntity secondaryIngredientToUpdate = SecondaryIngredientDAO.getSecondaryIngredientById(manager,
 					selectedSecondaryId);
 			if (secondaryIngredientToUpdate != null) {
 				secondaryIngredientToUpdate.setName(newName);
@@ -124,7 +124,7 @@ public class SecondaryIngredientServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			SecondaryIngredient newSecondaryIngredient = new SecondaryIngredient();
+			SecondaryIngredientEntity newSecondaryIngredient = new SecondaryIngredientEntity();
 			newSecondaryIngredient.setName(name);
 			newSecondaryIngredient.setPrice(price);
 			SecondaryIngredientDAO.createNewSecondaryIngredient(manager, newSecondaryIngredient);

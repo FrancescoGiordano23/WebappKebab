@@ -6,11 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import com.advancia.DAO.SauceIngredientDAO;
-import com.advancia.Modal.SauceIngredient;
+import com.advancia.Entity.SauceIngredientEntity;
 
 public class SauceIngredientServices {
 
-	public static List<SauceIngredient> getAllSauceIngredients() {
+	public static List<SauceIngredientEntity> getAllSauceIngredients() {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -29,7 +29,7 @@ public class SauceIngredientServices {
 		return null;
 	}
 	
-	public static SauceIngredient getSauceIngredientById(int selectedSauceId) {
+	public static SauceIngredientEntity getSauceIngredientById(int selectedSauceId) {
 		EntityManager manager = null;
 		EntityTransaction transaction = null;
 		try {
@@ -94,7 +94,7 @@ public class SauceIngredientServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			SauceIngredient SauceIngredientToUpdate = SauceIngredientDAO.getSauceIngredientById(manager,
+			SauceIngredientEntity SauceIngredientToUpdate = SauceIngredientDAO.getSauceIngredientById(manager,
 					selectedSauceId);
 			if (SauceIngredientToUpdate != null) {
 				SauceIngredientToUpdate.setName(newName);
@@ -121,7 +121,7 @@ public class SauceIngredientServices {
 			manager = JpaUtil.GetEntityManager();
 			transaction = manager.getTransaction();
 			transaction.begin();
-			SauceIngredient newSauceIngredient = new SauceIngredient();
+			SauceIngredientEntity newSauceIngredient = new SauceIngredientEntity();
 			newSauceIngredient.setName(name);
 			newSauceIngredient.setPrice(price);
 			SauceIngredientDAO.createNewSauceIngredient(manager, newSauceIngredient);
